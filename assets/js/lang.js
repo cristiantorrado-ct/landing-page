@@ -1,6 +1,6 @@
 const translations = {
   en: {
-   "page.title": "Cristian Torrado | Digital Strategy Consultant & Tech Mentor",
+    "page.title": "Cristian Torrado | Digital Strategy Consultant & Tech Mentor",
     "header.name": "Cristian Torrado",
     "nav.about": "About",
     "nav.services": "Services",
@@ -51,6 +51,18 @@ const translations = {
     "about.services": "Servicios",
     "services.title": "Lo que Ofrezco",
     "services.subtitle": "Consultoría y mentoría de alto impacto, diseñada para líderes y empresas en transformación.",
+    "service.strategy.title": "Consultoría en Estrategia Tecnológica",
+    "service.strategy.description": "Diseño de estrategias tecnológicas escalables y sostenibles alineadas con tus objetivos de negocio.",
+    "service.mentoring.title": "Mentoría de Liderazgo",
+    "service.mentoring.description": "Mentoría 1:1 para nuevos líderes técnicos, managers y emprendedores en roles estratégicos.",
+    "service.workshops.title": "Talleres y Capacitaciones",
+    "service.workshops.description": "Sesiones interactivas para alinear equipos, mejorar entregas y fomentar el pensamiento de producto en organizaciones tecnológicas.",
+    "service.engagements.title": "Colaboraciones Remotas y Presenciales",
+    "service.engagements.description": "Disponible para colaboraciones globales—remotas o presenciales, con formatos flexibles y premium.",
+    "service.advisory.title": "Asesoría de Producto",
+    "service.advisory.description": "Ayudo a fundadores y líderes de producto a definir, evolucionar o redirigir sus productos digitales con confianza.",
+    "service.coaching.title": "Coaching de Carrera",
+    "service.coaching.description": "Acompañamiento para desarrolladores y profesionales que transitan hacia roles de liderazgo o cambios en la industria.",
     "contact.title": "Hablemos de Estrategia",
     "contact.subtitle": "¿Querés trabajar conmigo o necesitás mentoría? Conectemos.",
     "contact.schedule": "Agendá una Sesión",
@@ -77,11 +89,14 @@ function updateTexts(lang) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const langSwitch = document.getElementById("lang-switch");
-  langSwitch.addEventListener("change", () => {
-    const selectedLang = langSwitch.value;
-    updateTexts(selectedLang);
-  });
-
-  // Set default language
-  updateTexts("en");
+  const browserLang = navigator.language || navigator.userLanguage;
+  const lang = browserLang.startsWith("es") ? "es" : "en";
+  updateTexts(lang);
+  if (langSwitch) langSwitch.value = lang;
+  if (langSwitch) {
+    langSwitch.addEventListener("change", () => {
+      const selectedLang = langSwitch.value;
+      updateTexts(selectedLang);
+    });
+  }
 });
